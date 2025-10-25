@@ -27,7 +27,11 @@ class PokemonViewModel: PokemonViewModelProtocol {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    private let apiService = PokemonAPIService()
+    private let apiService: PokemonAPIServiceProtocol
+    
+    init(apiService: PokemonAPIServiceProtocol) {
+        self.apiService = apiService
+    }
     
     func loadPokemonList() async {
         isLoading = true
