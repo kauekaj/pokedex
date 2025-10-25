@@ -78,3 +78,14 @@ struct PokeAbility: Codable {
     var name: String?
     var url: String?
 }
+
+// MARK: - Extensions for SelectedPokemonResponse
+extension SelectedPokemonResponse {
+    var allTypes: [String] {
+        return types?.compactMap { $0.type.name } ?? []
+    }
+    
+    var primaryType: String? {
+        return types?.first?.type.name
+    }
+}
