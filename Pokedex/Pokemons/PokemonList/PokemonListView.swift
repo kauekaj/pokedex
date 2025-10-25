@@ -55,7 +55,7 @@ struct PokemonListView<ViewModel: PokemonViewModelProtocol & ObservableObject>: 
     @ViewBuilder
     private var headerSection: some View {
         VStack(spacing: 12) {
-            Text("Pokédex")
+            Text("Pokedex")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.primary)
