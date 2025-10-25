@@ -34,7 +34,9 @@ struct PokemonListView<ViewModel: PokemonViewModelProtocol & ObservableObject>: 
                         GridItem(.flexible())
                     ], spacing: 20) {
                         ForEach(filteredPokemon) { pokemon in
-                            NavigationLink(destination: Text("POKEMON DETAILS VIEW")) {
+                            NavigationLink(destination: PokemonDetailView(
+                                model: createPokemonDetailModel(for: pokemon)
+                            )) {
                                 PokemonCardView(pokemon: pokemon, viewModel: viewModel)
                             }
                             .buttonStyle(PlainButtonStyle())
@@ -67,5 +69,12 @@ struct PokemonListView<ViewModel: PokemonViewModelProtocol & ObservableObject>: 
         }
         .padding(.top, 20)
         .padding(.bottom, 16)
+    }
+    
+    // MARK: - Helper Methods
+    
+    private func createPokemonDetailModel(for pokemon: PokemonEntry) -> PokemonDetailModel {
+        let pokemonDetail = viewModel.pokemonDetails.first { $0.name?.lowercased() == pokemon.name.lowercased() }
+        return PokemonDetailModel(pokemon: pokemon, pokemonDetail: pokemonDetail)
     }
 }
