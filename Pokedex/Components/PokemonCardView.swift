@@ -10,6 +10,7 @@ import SwiftUI
 struct PokemonCardView<ViewModel: PokemonViewModelProtocol>: View {
     let pokemon: PokemonEntry
     @ObservedObject var viewModel: ViewModel
+    @State private var isFavorite = false
     
     private var pokemonDetail: SelectedPokemonResponse? {
         viewModel.pokemonDetails.first { $0.name?.lowercased() == pokemon.name.lowercased() }
@@ -41,11 +42,8 @@ struct PokemonCardView<ViewModel: PokemonViewModelProtocol>: View {
             
             Spacer()
             
-            Button(action: {}) {
-                Image(systemName: "heart")
-                    .font(.caption)
-                    .foregroundColor(.white.opacity(0.7))
-            }
+            FavoriteButton(isFavorite: $isFavorite, font: .caption)
+                .foregroundColor(.white.opacity(0.7))
         }
     }
     

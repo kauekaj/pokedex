@@ -51,11 +51,7 @@ struct PokemonDetailView: View {
             
             Spacer()
             
-            Button(action: { isFavorite.toggle() }) {
-                Image(systemName: isFavorite ? "heart.fill" : "heart")
-                    .font(.title2)
-                    .foregroundColor(.white)
-            }
+            FavoriteButton(isFavorite: $isFavorite)
         }
         .padding(.horizontal, 20)
         .padding(.top, 10)
