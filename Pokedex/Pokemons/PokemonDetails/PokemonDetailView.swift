@@ -91,15 +91,12 @@ struct PokemonDetailView: View {
     
     @ViewBuilder
     private var pokemonImage: some View {
-        AsyncImage(url: model.imageURL) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-        } placeholder: {
-            ProgressView()
-                .frame(width: 200, height: 200)
-        }
-        .frame(width: 200, height: 200)
+            ImageLoaderView(
+                urlString: model.imageURL?.absoluteString,
+                resizingMode: ContentMode.fit
+            )
+            .frame(width: 200, height: 200)
+            .cornerRadius(12)
     }
     
     // MARK: - Details Card Section

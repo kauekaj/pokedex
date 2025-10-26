@@ -20,33 +20,6 @@ struct AboutTabView: View {
                 
                 Divider()
                     .padding(.vertical, 8)
-                
-                VStack(alignment: .leading, spacing: 12) {
-                    Text("Breeding")
-                        .font(.headline)
-                        .fontWeight(.semibold)
-                    
-                    HStack {
-                        Text("Gender")
-                            .foregroundColor(.secondary)
-                        Spacer()
-                        HStack(spacing: 16) {
-                            HStack(spacing: 4) {
-                                Text("♂")
-                                    .foregroundColor(.blue)
-                                Text("87.5%")
-                            }
-                            HStack(spacing: 4) {
-                                Text("♀")
-                                    .foregroundColor(.pink)
-                                Text("12.5%")
-                            }
-                        }
-                    }
-                    
-                    DetailRow(title: "Egg Groups", value: "Monster")
-                    DetailRow(title: "Egg Cycle", value: "Grass")
-                }
             }
         }
         .padding(.horizontal, 20)

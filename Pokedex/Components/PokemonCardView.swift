@@ -60,38 +60,14 @@ struct PokemonCardView<ViewModel: PokemonViewModelProtocol>: View {
     
     @ViewBuilder
     private var imageSection: some View {
-        if let imageURL = pokemonImageURL {
-            AsyncImage(url: imageURL) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            } placeholder: {
-                ProgressView()
-                    .frame(width: 80, height: 80)
-            }
+            ImageLoaderView(
+                urlString: pokemonDetail?.sprites?.other?.officialArtwork?.frontDefault,
+                resizingMode: ContentMode.fit
+            )
             .frame(width: 80, height: 80)
-        } else {
-            fallbackIcon
-        }
+            .cornerRadius(8)
     }
-    
-    @ViewBuilder
-    private var fallbackIcon: some View {
-        Image(systemName: "questionmark.circle.fill")
-            .font(.system(size: 50))
-            .foregroundColor(.white.opacity(0.8))
-            .frame(width: 80, height: 80)
-    }
-    
-    // MARK: - Computed Properties
-    
-    private var pokemonImageURL: URL? {
-        guard let imageURL = pokemonDetail?.sprites?.other?.officialArtwork?.frontDefault else {
-            return nil
-        }
-        return URL(string: imageURL)
-    }
-    
+        
     private var backgroundColor: Color {
         guard let primaryType = pokemonDetail?.primaryType else {
             return .gray
